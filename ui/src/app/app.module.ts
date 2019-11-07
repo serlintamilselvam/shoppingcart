@@ -6,13 +6,13 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SignupmodalComponent } from './components/modals/signupmodal/signupmodal.component';
+import { SignupComponent } from './views/signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SignupmodalComponent
+    SignupComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 
 export class HeaderComponent implements OnInit {
 
+  public triggerSignupModal() {
+    console.log('click event gets triggered')
+  }
+
   constructor() { }
 
   ngOnInit() {

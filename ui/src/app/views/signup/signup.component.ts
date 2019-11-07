@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { SignupService } from './signup.service';
 
 @Component({
-  selector: 'app-signupmodal',
-  templateUrl: './signupmodal.component.html',
-  styleUrls: ['./signupmodal.component.scss']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
 })
-export class SignupmodalComponent implements OnInit {
+export class SignupComponent implements OnInit {
 
   public nestedForm: FormGroup = new FormGroup({
     fname: new FormControl('', [Validators.required]),
@@ -20,11 +21,10 @@ export class SignupmodalComponent implements OnInit {
     // if(this.nestedForm.invalid){
     //   return
     // }
-
-    console.log(' Billing Form', this.nestedForm);
+    this.api.createAccount(JSON.stringify(this.nestedForm.value))
   }
 
-  constructor() { }
+  constructor(private api: SignupService) { }
 
   ngOnInit() {
   }
