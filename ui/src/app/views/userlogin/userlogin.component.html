@@ -1,0 +1,17 @@
+<div class="userlogin-component">
+    <h1>Login to your account</h1>
+    <div class="container">
+        <form [formGroup] ="nestedForm" (ngSubmit) = "onSubmit()" class="loginmodal">
+            <div class="row">
+                <input type="text" formControlName="email" class="" placeholder="E Mail">
+            </div>
+            <div class="row">
+                <input type="password" formControlName="password" class="" placeholder="Password">
+            </div>
+            <div class="btn-wrapper">
+                <button type="submit" [disabled]="nestedForm.invalid">Login</button>
+            </div>
+            <a class="login-link" routerLink="/signup">Sign up for an account</a>
+        </form>
+    </div>
+</div>

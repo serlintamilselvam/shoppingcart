@@ -1,20 +1,26 @@
-<div class="container">
-    <form [formGroup] ="nestedForm" (ngSubmit) = "onSubmit()">
-  <div class="row">
-      <input type="text" formControlName="fname" class="" placeholder="First Name">
-  </div>
-  <div class="row">
-    <input type="text" formControlName="lname" class="" placeholder="Last Name">
-  </div>
-  <div class="row">
-      <input type="text" formControlName="email" class="" placeholder="E Mail">
-  </div>
-  <div class="row">
-    <input type="number" formControlName="phone" class="" placeholder="Phone Number">
-  </div>
-  <div class="row">
-      <input type="password" formControlName="password" class="" placeholder="Password(Minimum 8 characters)">
-  </div>
-  <button type="submit" [disabled]="nestedForm.invalid">Sign Up</button>
-  </form>
-  </div>
+<div class="signup-component">
+    <h1>Create an account</h1>
+    <div class="container">
+        <form [formGroup] ="nestedForm" (ngSubmit) = "onSubmit()" class="signupmodal">
+      <div class="row">
+          <input type="text" formControlName="fname" class="" placeholder="First Name">
+      </div>
+      <div class="row">
+        <input type="text" formControlName="lname" class="" placeholder="Last Name">
+      </div>
+      <div class="row">
+          <input type="text" formControlName="email" class="" placeholder="E Mail">
+      </div>
+      <div class="row">
+        <input type="number" formControlName="phone" class="" placeholder="Phone Number">
+      </div>
+      <div class="row">
+          <input type="password" formControlName="password" class="" placeholder="Password(Minimum 8 characters)">
+      </div>
+      <div class="btn-wrapper">
+        <button type="submit" [disabled]="nestedForm.invalid">Sign Up</button>
+      </div>
+      <a class="login-link" routerLink="/login">Already have an account? Login</a>
+      </form>
+      </div>
+</div>
