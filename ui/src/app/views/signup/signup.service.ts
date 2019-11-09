@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-const localUrl = 'http://localhost/sample/checkdb.php/';
+import { environment } from '../../../../src/environments/environment';
+const apiUrl = environment.baseUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,8 @@ export class SignupService {
 
   constructor(private http: HttpClient) { }
 
-  createAccount(data) {
-    this.http.post(localUrl, data).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    )
-
+  public createAccount(data) {
+    var requesturl = apiUrl + environment.customer.addCustomers
+    return this.http.post(requesturl, data)
   }
-
 }
