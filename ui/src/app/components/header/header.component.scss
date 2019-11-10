@@ -3,9 +3,37 @@
         background-color: #4d4d4f !important;
         ul {
             li {
+                border-right: 1px solid #fff;
+                border-left: 1px solid #ffff;
+                z-index: 99;
+
                 a {
                     color: white;
+                    cursor: pointer;
                 }
+            }
+            .project-title {
+                border: none;
+                position: absolute;
+                z-index: 9;
+                right: 0;
+                left: 0;
+                text-align: center;
+
+                a {
+                    text-align: center;
+                    font-size: 1.5em;
+                    text-transform: uppercase;
+                    color: #dc3545;
+                }
+            }
+            .login-button {
+                position: absolute;
+                right: 0;
+            }
+            .customer-name {
+                position: absolute;
+                right: 5%;
             }
         }
     }

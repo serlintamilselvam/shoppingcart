@@ -29,9 +29,10 @@ export class UserloginComponent implements OnInit {
         } else {
           this.setCustomerSession(customerId)
           this.toastr.success("Logged In Successfully")
-          this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
-            this.router.navigate(['']);
-          }); 
+          window.location.href = '/'
+          // this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
+          //   this.router.navigate(['']);
+          // }); 
         }
       } else {
         this.toastr.error("Invalid e-mail address or password")

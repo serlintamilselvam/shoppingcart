@@ -33,9 +33,10 @@ export class SignupComponent implements OnInit {
         } else {
           this.setCustomerSession(customerId)
           this.toastr.success("Account created successfully!")
-          this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
-            this.router.navigate(['']);
-          });
+          window.location.href = '/'
+          // this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
+          //   this.router.navigate(['']);
+          // });
         }
       } else {
         this.toastr.error("Already signed up user")
