@@ -11,6 +11,7 @@ import { UserloginComponent } from './views/userlogin/userlogin.component';
 import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from  'ngx-ui-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,11 @@ import { ToastrModule } from 'ngx-toastr';
     }),
     AppRoutingModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    CookieService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
