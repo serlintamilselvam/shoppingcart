@@ -14,6 +14,11 @@ interface customerInformation {
   phone_no: string
 }
 
+interface categoryList {
+  cat_id: number,
+  name: string
+}
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -23,6 +28,7 @@ interface customerInformation {
 export class HeaderComponent implements OnInit {
 
   customerInfo$: Observable<customerInformation[]>
+  categoryInfo$: Observable<categoryList[]>
   isLoggedIn: boolean = false
 
   constructor(private api: HeaderService, private router: Router, private cookieservice: CookieService) { }
@@ -50,6 +56,17 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  public getCategoryCollection() {
+    this.api.categories().subscribe((data: any)=>{
+      if (data.response.result.toLowerCase() === 'success') {
+        this.categoryInfo$ = _.cloneDeep(data.response.data)
+        console.log('categoryInfo is ', this.categoryInfo$)
+      } else {
+        console.log('please try again after sometime')
+      }
+    })
+  }
+
   public getCustomerIdFromCookie() {
     return this.cookieservice.get('user-details')
   }
@@ -66,6 +83,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.getCustomerDetails()
+    this.getCategoryCollection()
   }
 
 }

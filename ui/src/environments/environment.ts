@@ -9,6 +9,9 @@ export const environment = {
     addCustomers: 'customer/signup',
     login: 'customer/login',
     getCustomerDetails: 'customer/get'
+  },
+  category: {
+    getList: 'category/getcollection'
   }
 };
 

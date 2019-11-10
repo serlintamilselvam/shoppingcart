@@ -37,4 +37,23 @@
             }
         }
     }
+    .category-nav {
+        text-align: center;
+        border-bottom: 1px solid;
+
+        ul {
+            margin: 0px auto;
+            display: inline-flex;
+            text-align: center;
+            list-style-type: none;
+
+            li {
+                padding: 1em 2em;
+                text-transform: uppercase;
+                font-family: proxima-nova,Helvetica Neue,Helvetica,Arial,Sans-Serif;
+                font-size: 1em;
+                font-weight: 700;
+            }
+        }
+    }
 }

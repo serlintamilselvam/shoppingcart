@@ -15,4 +15,9 @@ export class HeaderService {
     return this.http.get(requesturl)
   }
 
+  public categories() {
+    var resquestedurl = apiUrl + environment.category.getList
+    return this.http.get(resquestedurl)
+  }
+
 }

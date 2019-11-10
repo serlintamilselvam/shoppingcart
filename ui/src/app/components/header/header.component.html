@@ -30,4 +30,11 @@
       </ul>
     </div>
   </nav>
+  <div class="category-nav" *ngIf="loggedInState() == true">
+    <ul>
+      <li class="category-item" *ngFor="let categoryItem of categoryInfo$">
+        <a class="cat-link" title=" {{ categoryItem.name }} "> {{ categoryItem.name }} </a>
+      </li>
+    </ul>
+  </div>
 </div>
