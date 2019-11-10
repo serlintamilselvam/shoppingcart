@@ -41,4 +41,24 @@ class CustomerController extends Controller {
 	    }
 	    return addJSONResponseWrapper($response);
     }
+
+    public function customerDetails($cust_id) {
+    	try {
+    		$response = initResponse();
+    		$customer = $this->getCustomerById($cust_id);
+    		if(isset($customer['cust_id']) && $customer['cust_id'] != '') {
+    			$response = getSuccessResponse($response);
+    			$response['data'] = $customer;
+    		} else {
+    			$response = initValidationResponse('Customer not found');
+    		}
+    	} catch(\Exception $ex) {
+	    	$response = getExceptionResponse($ex);
+	    }
+	    return addJSONResponseWrapper($response);
+    }
+
+    public function getCustomerById($id) {
+    	return Customer::select('*')->where('cust_id',$id)->first();
+    }
 }

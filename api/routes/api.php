@@ -20,4 +20,5 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, X-Requ
 Route::prefix('customer')->group(function () {
 	Route::post('/signup', 'CustomerController@create');
 	Route::post('/login', 'CustomerController@login');
+	Route::get('/get/{id}', 'CustomerController@customerDetails');
 });
