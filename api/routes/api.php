@@ -22,3 +22,7 @@ Route::prefix('customer')->group(function () {
 	Route::post('/login', 'CustomerController@login');
 	Route::get('/get/{id}', 'CustomerController@customerDetails');
 });
+
+Route::prefix('category')->group(function () {
+	Route::get('/getcollection', 'CategoryController@getCollection');
+});
