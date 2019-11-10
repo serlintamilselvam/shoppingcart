@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   baseUrl: 'http://127.0.0.1:8000/api/',
   customer: {
-    addCustomers: 'customer/signup'
+    addCustomers: 'customer/signup',
+    login: 'customer/login'
   }
 };
 

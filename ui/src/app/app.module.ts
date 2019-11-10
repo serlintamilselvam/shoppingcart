@@ -3,15 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './components/header/header.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SignupComponent } from './views/signup/signup.component';
-import { UserloginComponent } from './views/userlogin/userlogin.component';
 import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from  'ngx-ui-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
+import { Interceptor } from './interceptor';
+
+/*
+  Custom component declaration
+*/
+import { HeaderComponent } from './components/header/header.component';
+import { SignupComponent } from './views/signup/signup.component';
+import { UserloginComponent } from './views/userlogin/userlogin.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,8 @@ import { CookieService } from 'ngx-cookie-service';
     AppRoutingModule
   ],
   providers: [
-    CookieService
+    CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
   ],
   bootstrap: [
     AppComponent
