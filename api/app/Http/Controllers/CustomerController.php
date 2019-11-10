@@ -25,4 +25,20 @@ class CustomerController extends Controller {
 	    }
 	    return addJSONResponseWrapper($response);
     }
+
+    public function login(Request $request) {
+    	try {
+    		$response = initResponse();
+    		$customerDetails = Customer::select('*')->where('email',$request->input('email'))->first();
+    		if(strcmp($request->input('password'), $customerDetails['password']) != 0) {
+    			$response = initValidationResponse('password incorrect');
+    		} else {
+    			$response = getSuccessResponse($response);
+	    		$response['data'] = $customerDetails;
+    		}
+    	} catch(\Exception $ex) {
+	    	$response = getExceptionResponse($ex);
+	    }
+	    return addJSONResponseWrapper($response);
+    }
 }

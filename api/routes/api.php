@@ -15,8 +15,9 @@ use Illuminate\Http\Request;
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, X-Requested-With');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, X-Requested-With, authId');
 
 Route::prefix('customer')->group(function () {
 	Route::post('/signup', 'CustomerController@create');
+	Route::post('/login', 'CustomerController@login');
 });
