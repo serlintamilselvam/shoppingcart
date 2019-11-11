@@ -18,7 +18,6 @@ export class UserloginComponent implements OnInit {
   });
 
   public onSubmit() {
-    this.api.loginAccount(JSON.stringify(this.nestedForm.value))
     var data = this.nestedForm.value
     this.api.loginAccount(data).subscribe((data: any)=>{
       console.log('Login Form JSON ', data)

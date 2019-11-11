@@ -53,6 +53,15 @@
                 font-family: proxima-nova,Helvetica Neue,Helvetica,Arial,Sans-Serif;
                 font-size: 1em;
                 font-weight: 700;
+
+                a {
+                    color: black;
+                    cursor: pointer;
+                }
+
+                a:hover {
+                    text-decoration: none;
+                }
             }
         }
     }
