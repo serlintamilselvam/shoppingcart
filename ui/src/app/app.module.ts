@@ -17,13 +17,15 @@ import { Interceptor } from './interceptor';
 import { HeaderComponent } from './components/header/header.component';
 import { SignupComponent } from './views/signup/signup.component';
 import { UserloginComponent } from './views/userlogin/userlogin.component';
+import { ProductlistComponent } from './views/productlist/productlist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SignupComponent,
-    UserloginComponent
+    UserloginComponent,
+    ProductlistComponent
   ],
   imports: [
     BrowserModule,

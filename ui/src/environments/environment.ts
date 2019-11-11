@@ -12,6 +12,9 @@ export const environment = {
   },
   category: {
     getList: 'category/getcollection'
+  },
+  product: {
+    getList: 'product/getlist'
   }
 };
 
