@@ -26,3 +26,7 @@ Route::prefix('customer')->group(function () {
 Route::prefix('category')->group(function () {
 	Route::get('/getcollection', 'CategoryController@getCollection');
 });
+
+Route::prefix('product')->group(function(){
+	Route::get('/getlist/{id}','ProductController@getProductDetails');
+});
