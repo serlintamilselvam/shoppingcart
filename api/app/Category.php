@@ -7,4 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model {
 	protected $table = 'category';
 	protected $insertElements = ['name'];
+
+	public function getCategoryNameFromId($catId) {
+		$categoryName = Self::selectRaw('category.name')
+		                ->where([['category.cat_id', '=', $catId]])->get()->first();
+		return $categoryName;
+	}
 }
