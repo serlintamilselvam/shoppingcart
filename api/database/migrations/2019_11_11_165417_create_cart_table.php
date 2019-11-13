@@ -15,7 +15,7 @@ class CreateCartTable extends Migration
     {
         Schema::create('cart', function (Blueprint $table) {
             $table->bigIncrements('cart_id')->autoIncrement()->comment('Cart id');;
-            $table->unsignedBigInteger('cust_id');
+            $table->unsignedBigInteger('cust_id')->unique();
             $table->foreign('cust_id')->references('cust_id')->on('customers');
            
         });

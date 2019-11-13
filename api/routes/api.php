@@ -29,4 +29,6 @@ Route::prefix('category')->group(function () {
 
 Route::prefix('product')->group(function(){
 	Route::get('/getlist/{id}','ProductController@getProductDetails');
+	Route::post('/addtocart', 'CartController@addProductToCart');
+	Route::post('/cartcount', 'CartController@getCountOfTotalProductsInCart');
 });
