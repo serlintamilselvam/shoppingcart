@@ -9,6 +9,7 @@ import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from  'ngx-ui-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Interceptor } from './interceptor';
 
 /*
@@ -18,6 +19,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { SignupComponent } from './views/signup/signup.component';
 import { UserloginComponent } from './views/userlogin/userlogin.component';
 import { ProductlistComponent } from './views/productlist/productlist.component';
+
+/*
+  Custom Service
+*/
+import { ApiService } from './api.service';
 
 @NgModule({
   declarations: [
@@ -38,11 +44,13 @@ import { ProductlistComponent } from './views/productlist/productlist.component'
     ToastrModule.forRoot({
       positionClass: 'toast-center-center'
     }),
+    FontAwesomeModule,
     AppRoutingModule
   ],
   providers: [
     CookieService,
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+    ApiService
   ],
   bootstrap: [
     AppComponent

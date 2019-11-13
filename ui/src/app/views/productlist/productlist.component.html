@@ -12,7 +12,7 @@
           <img src="assets/productimages/{{productItem.imagepath}}">
           <h5 class="card-title">{{productItem.name}}</h5>
           <div class="card-text">${{productItem.rate}}</div>
-          <a href="#" class="btn btn-primary red-button">Add to cart</a>
+          <a class="btn btn-primary red-button" (click)="addToCart(productItem.prod_id)" title="Add to cart">Add to cart</a>
         </div>
       </div>
     </div>

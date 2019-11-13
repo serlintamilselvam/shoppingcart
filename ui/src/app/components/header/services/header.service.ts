@@ -20,4 +20,9 @@ export class HeaderService {
     return this.http.get(resquestedurl)
   }
 
+  public cartCount(data) {
+    var resquestedurl = apiUrl + environment.product.cartCount
+    return this.http.post(resquestedurl, data)
+  }
+
 }

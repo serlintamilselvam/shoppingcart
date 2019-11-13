@@ -10,6 +10,7 @@
                 a {
                     color: white;
                     cursor: pointer;
+                    padding: 0.5em 1em;
                 }
             }
             .project-title {
@@ -27,13 +28,14 @@
                     color: #dc3545;
                 }
             }
-            .login-button {
+            .right-nav {
                 position: absolute;
                 right: 0;
-            }
-            .customer-name {
-                position: absolute;
-                right: 5%;
+                display: flex;
+
+                .cart-space{
+                    padding-left: 0.5em;
+                }
             }
         }
     }

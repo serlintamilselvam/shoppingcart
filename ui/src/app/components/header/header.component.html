@@ -21,12 +21,17 @@
         <li class="nav-item login-button" *ngIf="loggedInState() == false">
           <a class="nav-link" routerLink="/signup" title="Create Account/Login">Sign up/Login</a>
         </li>
-        <li class="nav-item customer-name" *ngIf="loggedInState() == true">
-          <a class="nav-link" title="Hello, {{ customerInfo$.first_name }}">Hello, {{ customerInfo$.first_name }}</a>
-        </li>
-        <li class="nav-item login-button" *ngIf="loggedInState() == true">
-          <a class="nav-link" (click)="logOutCustomer()" title="Logout">Logout</a>
-        </li>
+        <div class="right-nav">
+          <li class="nav-item customer-name" *ngIf="loggedInState() == true">
+            <a class="nav-link" title="Hello, {{ customerInfo$.first_name }}">Hello, {{ customerInfo$.first_name }}</a>
+          </li>
+          <li class="nav-item login-button" *ngIf="loggedInState() == true">
+            <a class="nav-link" (click)="logOutCustomer()" title="Logout">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" title="Cart"><fa-icon [icon]="faShoppingCart"></fa-icon><span class="cart-space">Cart({{cartValue}})</span></a>
+          </li>
+        </div>
       </ul>
     </div>
   </nav>

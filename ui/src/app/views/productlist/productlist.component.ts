@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs/Observable";
+import { ToastrService } from 'ngx-toastr';
 import * as _ from 'lodash';
-import { ProductService } from './service/product.service';
+import {ProductService} from './service/product.service';
+import {ApiService} from '../../api.service'
 
 interface productDetails {
   prod_id: number,
@@ -36,7 +38,28 @@ export class ProductlistComponent implements OnInit {
     })
   }
 
-  constructor(private api: ProductService, private router: Router, private activeRoute: ActivatedRoute) { }
+  public addToCart(productId: number) {
+    var dataJson = {
+      "productId": productId,
+      "page": "product",
+	    "qty": 1
+    }
+    this.api.addProductToCart(dataJson).subscribe((data: any)=>{
+      if (data.response.result.toLowerCase() === 'success') {
+        this.toastr.success("Product added to cart successfully")
+        this.dataSharingService.cartValueUpdated.next(data.response.data.total_product);
+      } else {
+        this.toastr.error("Error while adding to cart")
+      }
+    })
+  }
+
+  constructor(
+    private api: ProductService, 
+    private router: Router, 
+    private activeRoute: ActivatedRoute,
+    private dataSharingService: ApiService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.activeRoute.paramMap.subscribe(params => {

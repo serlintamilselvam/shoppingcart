@@ -13,5 +13,10 @@ export class ProductService {
     return this.http.get(requesturl)
   }
 
+  public addProductToCart(data) {
+    var requesturl = apiUrl + environment.product.addToCart
+    return this.http.post(requesturl, data)
+  }
+
   constructor(private http: HttpClient) { }
 }

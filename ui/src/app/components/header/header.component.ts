@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import * as _ from 'lodash';
 import { CookieService } from 'ngx-cookie-service';
 import { HeaderService } from './services/header.service';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { ApiService } from '../../api.service';
 
 interface customerInformation {
   cust_id: number,
@@ -30,8 +32,15 @@ export class HeaderComponent implements OnInit {
   customerInfo$: Observable<customerInformation[]>
   categoryInfo$: Observable<categoryList[]>
   isLoggedIn: boolean = false
+  faShoppingCart = faShoppingCart
+  cartValue: number
 
-  constructor(private api: HeaderService, private router: Router, private cookieservice: CookieService) { }
+  constructor(private api: HeaderService, private router: Router, private cookieservice: CookieService, private dataSharingService: ApiService) {
+    this.cartValue = 0
+    this.dataSharingService.cartValueUpdated.subscribe( value => {
+      this.cartValue = value
+    });
+   }
 
   public getCustomerDetails() {
     var customerId = this.getCustomerIdFromCookie()
@@ -67,6 +76,20 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  public getCartCount() {
+    var data = {}
+    this.api.cartCount(data).subscribe((data: any)=>{
+      if (data.response.result.toLowerCase() === 'success') {
+        var tempCart = data.response.data.total_product
+        if (typeof tempCart != "undefined" && tempCart != null && tempCart != '') {
+          this.cartValue = tempCart
+        }
+      } else {
+        console.log('empty cart')
+      }
+    })
+  }
+
   public getCustomerIdFromCookie() {
     return this.cookieservice.get('user-details')
   }
@@ -84,6 +107,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.getCustomerDetails()
     this.getCategoryCollection()
+    this.getCartCount()
   }
 
 }
