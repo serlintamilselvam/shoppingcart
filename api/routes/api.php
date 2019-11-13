@@ -18,9 +18,9 @@ header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, X-Requested-With, authId');
 
 Route::prefix('customer')->group(function () {
+	Route::get('/get/{id}', 'CustomerController@customerDetails');
 	Route::post('/signup', 'CustomerController@create');
 	Route::post('/login', 'CustomerController@login');
-	Route::get('/get/{id}', 'CustomerController@customerDetails');
 });
 
 Route::prefix('category')->group(function () {
@@ -29,6 +29,7 @@ Route::prefix('category')->group(function () {
 
 Route::prefix('product')->group(function(){
 	Route::get('/getlist/{id}','ProductController@getProductDetails');
+	Route::get('/cartitems', 'CartController@getProductListInCart');
 	Route::post('/addtocart', 'CartController@addProductToCart');
 	Route::post('/cartcount', 'CartController@getCountOfTotalProductsInCart');
 });

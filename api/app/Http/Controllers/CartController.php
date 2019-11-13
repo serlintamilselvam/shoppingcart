@@ -14,6 +14,19 @@ class CartController extends Controller {
         $this->cart = $cart;
         $this->productincart = $productincart;
     }
+
+    private function getCartIdFromCustomerId($customerId) {
+ 		return Cart::select('*')->where('cust_id',$customerId)->first();
+ 	}
+
+ 	private function checkCartIdAndAddProductToCart($customerId, $productId, $qty=1, $source='product') {
+ 		$row = $this->getCartIdFromCustomerId($customerId);
+ 		if(!isset($row['cust_id']) && $row['cust_id'] == '') {
+ 			$this->cart->createCartForCustomer($customerId);
+ 			$row = $this->getCartIdFromCustomerId($customerId);
+ 		}
+ 		return $this->productincart->mapProductToCartId($row['cart_id'], $productId, $qty, $source);
+ 	}
  	
  	public function addProductToCart(Request $request) {
  		try {
@@ -57,16 +70,24 @@ class CartController extends Controller {
 	    return addJSONResponseWrapper($response);
  	}
 
- 	private function getCartIdFromCustomerId($customerId) {
- 		return Cart::select('*')->where('cust_id',$customerId)->first();
- 	}
-
- 	private function checkCartIdAndAddProductToCart($customerId, $productId, $qty=1, $source='product') {
- 		$row = $this->getCartIdFromCustomerId($customerId);
- 		if(!isset($row['cust_id']) && $row['cust_id'] == '') {
- 			$this->cart->createCartForCustomer($customerId);
- 			$row = $this->getCartIdFromCustomerId($customerId);
- 		}
- 		return $this->productincart->mapProductToCartId($row['cart_id'], $productId, $qty, $source);
+ 	public function getProductListInCart(Request $request) {
+ 		try {
+ 			$response = initResponse();
+	    	$customerId = $request->header('authId');
+	    	if(isset($customerId) && $customerId != '') {
+	    		$row = $this->getCartIdFromCustomerId($customerId);
+ 				if(!isset($row['cust_id']) && $row['cust_id'] == '') {
+ 					$response = initValidationResponse('empty cart');
+ 				} else {
+ 					$response['data'] = $this->productincart->getProductListFromCart($row['cart_id']);
+	    			$response = getSuccessResponse($response);
+ 				}
+	    	} else {
+	    		$response = initValidationResponse('invalid customer');
+	    	}
+ 		} catch(\Exception $ex) {
+	    	$response = getExceptionResponse($ex);
+	    }
+	    return addJSONResponseWrapper($response);
  	}
 }
