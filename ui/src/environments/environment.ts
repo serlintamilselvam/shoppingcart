@@ -16,7 +16,8 @@ export const environment = {
   product: {
     getList: 'product/getlist',
     addToCart: 'product/addtocart',
-    cartCount: 'product/cartcount'
+    cartCount: 'product/cartcount',
+    getCartItems: 'product/cartitems'
   }
 };
 

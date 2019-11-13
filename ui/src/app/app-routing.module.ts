@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SignupComponent } from './views/signup/signup.component';
 import { UserloginComponent } from './views/userlogin/userlogin.component';
 import { ProductlistComponent } from './views/productlist/productlist.component'
-
+import { CartComponent } from './views/cart/cart.component'
 
 const routes: Routes = [{ 
     path: 'signup', 
@@ -14,6 +14,9 @@ const routes: Routes = [{
   }, {
     path: 'productlist/:categoryId',
     component: ProductlistComponent
+  }, {
+    path: 'cart',
+    component: CartComponent
   }
 ];
 

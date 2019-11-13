@@ -46,8 +46,13 @@ export class ProductlistComponent implements OnInit {
     }
     this.api.addProductToCart(dataJson).subscribe((data: any)=>{
       if (data.response.result.toLowerCase() === 'success') {
-        this.toastr.success("Product added to cart successfully")
-        this.dataSharingService.cartValueUpdated.next(data.response.data.total_product);
+        if(data.response.data.status.toLowerCase() === 'unavailable') {
+          var responseText = "Only "+data.response.data.currentqty+ " quantities are available, so couln't add it in your cart"
+          this.toastr.error(responseText)
+        } else {
+          this.toastr.success("Product added to cart successfully")
+        }
+        this.dataSharingService.cartValueUpdated.next(data.response.data.data.total_product);
       } else {
         this.toastr.error("Error while adding to cart")
       }

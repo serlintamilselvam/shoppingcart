@@ -19,6 +19,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SignupComponent } from './views/signup/signup.component';
 import { UserloginComponent } from './views/userlogin/userlogin.component';
 import { ProductlistComponent } from './views/productlist/productlist.component';
+import { CartComponent } from './views/cart/cart.component';
 
 /*
   Custom Service
@@ -31,7 +32,8 @@ import { ApiService } from './api.service';
     HeaderComponent,
     SignupComponent,
     UserloginComponent,
-    ProductlistComponent
+    ProductlistComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
