@@ -33,4 +33,5 @@ Route::prefix('product')->group(function(){
 	Route::delete('/deletecartitem/{id}', 'CartController@deleteCartItem');
 	Route::post('/addtocart', 'CartController@addProductToCart');
 	Route::post('/cartcount', 'CartController@getCountOfTotalProductsInCart');
+	Route::post('/updatecart', 'CartController@updateCart');
 });

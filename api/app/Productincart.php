@@ -27,7 +27,7 @@ class Productincart extends Model {
 				if($source == 'product') {
 					$qty = $productList[0]['product_qty']+$qty;
 				}
-				if($qty < $availableQty[0]['qty']):
+				if($qty <= $availableQty[0]['qty']):
 					$this->updateCartQuantity($cartId, $productId, $qty);
 				else: 
 					$responseData['status'] = 'unavailable';
@@ -56,6 +56,12 @@ class Productincart extends Model {
 	public function updateCartQuantity($cartId, $productId, $qty) {
 		DB::table('productincart')
             ->where([['cart_id', '=', $cartId], ['prod_id', '=', $productId]])
+            ->update(['product_qty' => $qty]);
+	}
+
+	public function updateCartQuantityById($id, $qty) {
+		DB::table('productincart')
+            ->where([['id', '=', $id]])
             ->update(['product_qty' => $qty]);
 	}
 

@@ -27,6 +27,14 @@ class CartController extends Controller {
  		}
  		return $this->productincart->mapProductToCartId($row['cart_id'], $productId, $qty, $source);
  	}
+
+ 	private function totalShoppingCartValue($dataArray) {
+ 		$totalValue = 0;
+ 		foreach ($dataArray as $data) {
+ 			$totalValue += ($data['rate']*$data['product_qty']);
+ 		}
+ 		return round($totalValue, 2);
+ 	}
  	
  	public function addProductToCart(Request $request) {
  		try {
@@ -80,6 +88,9 @@ class CartController extends Controller {
  					$response = initValidationResponse('empty cart');
  				} else {
  					$response['data'] = $this->productincart->getProductListFromCart($row['cart_id']);
+ 					if(sizeof($response['data']) > 0) {
+ 						$response['total_value'] = $this->totalShoppingCartValue($response['data']);
+ 					}
 	    			$response = getSuccessResponse($response);
  				}
 	    	} else {
@@ -101,6 +112,24 @@ class CartController extends Controller {
 	    	} else {
 	    		$response = initValidationResponse('Error occurred while deleting!!');
 	    	}
+ 		} catch(\Exception $ex) {
+	    	$response = getExceptionResponse($ex);
+	    }
+	    return addJSONResponseWrapper($response);
+ 	}
+
+ 	public function updateCart(Request $request) {
+ 		try {
+ 			$response = initResponse();
+ 			$id = $request->input('id');
+ 			$qty = $request->input('qty');
+ 			if(isset($id) && $id != '' && isset($qty) && $qty != '') {
+ 				$this->productincart->updateCartQuantityById($id, $qty);
+ 				$response['msg'] = 'updated successfully';
+ 				$response = getSuccessResponse($response);
+ 			} else {
+ 				$response = initValidationResponse('Error occurred while updating!!');
+ 			}
  		} catch(\Exception $ex) {
 	    	$response = getExceptionResponse($ex);
 	    }
