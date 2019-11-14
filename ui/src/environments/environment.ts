@@ -18,7 +18,8 @@ export const environment = {
     addToCart: 'product/addtocart',
     cartCount: 'product/cartcount',
     getCartItems: 'product/cartitems',
-    deleteItem: 'product/deletecartitem'
+    deleteItem: 'product/deletecartitem',
+    updateItem: 'product/updatecart'
   }
 };
 

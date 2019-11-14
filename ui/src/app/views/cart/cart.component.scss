@@ -43,9 +43,37 @@
 
                 .total-price {
                     .total-value {
-                        padding-left: 2%;
+                        padding-left: 4%;
                         font-size: 1em;
                         font-weight: bold;
+                    }
+                }
+
+                .qty-field {
+                    padding-top: 20px;
+
+                    .update-cart-value {
+                        display: inline;
+                        
+                        input {
+                            width: 15%;
+                            padding-left: 10px;
+                            height: 25px;
+                        }
+
+                        .update-cart-btn {
+                            margin-left: 15px;
+                            letter-spacing: 1px;
+                            font-variant: small-caps;
+                            text-align: center;
+                            white-space: nowrap;
+                            border: 0px solid #dadada;
+                            background-color: #a71e2f;
+                            color: white;
+                            padding: 4px 10px;
+                            font-size: 1em;
+                            cursor: pointer;
+                        }
                     }
                 }
             }
@@ -56,6 +84,9 @@
         }
         img {
             max-width: 150px;
+        }
+        .empty-message {
+            text-align: center;
         }
     }
 }

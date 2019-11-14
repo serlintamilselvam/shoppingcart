@@ -21,8 +21,13 @@ export class CartService {
   }
 
   public cartCount(data) {
-    var resquestedurl = apiUrl + environment.product.cartCount
-    return this.http.post(resquestedurl, data)
+    var requesturl = apiUrl + environment.product.cartCount
+    return this.http.post(requesturl, data)
+  }
+
+  public updateQuantity(data) {
+    var requesturl = apiUrl + environment.product.updateItem
+    return this.http.post(requesturl, data)
   }
 
 }

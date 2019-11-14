@@ -6,7 +6,7 @@
         <div class="divider-line"></div>
     </div>
     <div class="product-wrapper">
-        <div class="row">
+        <div class="row" *ngIf="checkIsCartEmpty() === true; else elseBlock">
             <div class="col-sm-8">
                 <div class="row product-list" *ngFor="let productItem of productInfo$">
                     <div class="col-sm-4 text-align-right">
@@ -19,14 +19,25 @@
                         <div class="product-attributes">
                             <div class="product-title">{{productItem.name}}</div>
                             <div class="product-price">${{productItem.rate}}</div>
-                            <div class="total-price"><span class="topic">Total: </span><span class="total-value">${{productItem.product_qty*productItem.rate}}</span></div>
+                            <div class="total-price"><span class="topic">Total: </span><span class="total-value">${{calculateProductPrice(productItem.product_qty,productItem.rate)}}</span></div>
+                            <div class="qty-field">
+                                <span class="topic">Quantity: </span>
+                                <form [formGroup] ="nestedForm" (ngSubmit) = "onSubmit(productItem.id,productItem.qty)" class="update-cart-value">
+                                    <input type="number" formControlName="product_qty" min="1" max="{{productItem.qty}}" value="{{productItem.product_qty}}">
+                                    <button class="update-cart-btn" type="submit" [disabled]="nestedForm.invalid">Update</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4 cart-summary">
                 <h5>SHOPPING BAG TOTAL</h5>
+                <div class="right-attributes">
+                    <div class="order-value-text"><span>ORDER VALUE: </span><span class="order-value">${{orderValue}}</span></div>
+                </div>
             </div>
         </div>
+        <ng-template #elseBlock><h2 class="empty-message">Your shopping bag is empty!</h2></ng-template>
     </div>
 </div>
