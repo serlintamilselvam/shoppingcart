@@ -1,3 +1,32 @@
 <div class="cart-component">
-    Code from here tomorrow
+    <h1>
+       Shopping Bag
+    </h1>
+    <div class="separator-title">
+        <div class="divider-line"></div>
+    </div>
+    <div class="product-wrapper">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="row product-list" *ngFor="let productItem of productInfo$">
+                    <div class="col-sm-4 text-align-right">
+                        <img src="assets/productimages/{{productItem.imagepath}}">
+                    </div>
+                    <div class="col-sm-8">
+                        <button type="button" class="close" aria-label="Close" title="Remove from cart" (click)="removeProductFromCart(productItem.id)">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="product-attributes">
+                            <div class="product-title">{{productItem.name}}</div>
+                            <div class="product-price">${{productItem.rate}}</div>
+                            <div class="total-price"><span class="topic">Total: </span><span class="total-value">${{productItem.product_qty*productItem.rate}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 cart-summary">
+                <h5>SHOPPING BAG TOTAL</h5>
+            </div>
+        </div>
+    </div>
 </div>

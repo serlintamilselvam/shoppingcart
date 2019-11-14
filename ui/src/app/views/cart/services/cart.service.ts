@@ -15,4 +15,14 @@ export class CartService {
     return this.http.get(requesturl)
   }
 
+  public deleteCartItems(id) {
+    var requesturl = apiUrl + environment.product.deleteItem + '/' + id
+    return this.http.delete(requesturl)
+  }
+
+  public cartCount(data) {
+    var resquestedurl = apiUrl + environment.product.cartCount
+    return this.http.post(resquestedurl, data)
+  }
+
 }
