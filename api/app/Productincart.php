@@ -60,8 +60,12 @@ class Productincart extends Model {
 	}
 
 	public function getProductListFromCart($cartId) {
-		return Self::selectRaw('productincart.prod_id, productincart.product_qty, prod.name, prod.qty, prod.imagepath, prod.rate')
+		return Self::selectRaw('productincart.id, productincart.prod_id, productincart.product_qty, prod.name, prod.qty, prod.imagepath, prod.rate, prod.desc')
 				->leftJoin('product as prod', 'productincart.prod_id', '=', 'prod.prod_id')
 					->where([['productincart.cart_id', '=', $cartId]])->get()->toArray();
+	}
+
+	public function deleteAProductFromCart($id) {
+		DB::table('productincart')->where('id', '=', $id)->delete();
 	}
 }

@@ -90,4 +90,20 @@ class CartController extends Controller {
 	    }
 	    return addJSONResponseWrapper($response);
  	}
+
+ 	public function deleteCartItem($id) {
+ 		try {
+ 			$response = initResponse();
+	    	if(isset($id) && $id != '') {
+	    		$this->productincart->deleteAProductFromCart($id);
+	    		$response['msg'] = 'deleted successfully';
+	    		$response = getSuccessResponse($response);
+	    	} else {
+	    		$response = initValidationResponse('Error occurred while deleting!!');
+	    	}
+ 		} catch(\Exception $ex) {
+	    	$response = getExceptionResponse($ex);
+	    }
+	    return addJSONResponseWrapper($response);
+ 	}
 }

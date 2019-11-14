@@ -28,8 +28,9 @@ Route::prefix('category')->group(function () {
 });
 
 Route::prefix('product')->group(function(){
-	Route::get('/getlist/{id}','ProductController@getProductDetails');
 	Route::get('/cartitems', 'CartController@getProductListInCart');
+	Route::get('/getlist/{id}','ProductController@getProductDetails');
+	Route::delete('/deletecartitem/{id}', 'CartController@deleteCartItem');
 	Route::post('/addtocart', 'CartController@addProductToCart');
 	Route::post('/cartcount', 'CartController@getCountOfTotalProductsInCart');
 });
