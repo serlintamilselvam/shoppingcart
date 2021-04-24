@@ -21,7 +21,7 @@ class CartController extends Controller {
 
  	private function checkCartIdAndAddProductToCart($customerId, $productId, $qty=1, $source='product') {
  		$row = $this->getCartIdFromCustomerId($customerId);
- 		if(!isset($row['cust_id']) && $row['cust_id'] == '') {
+ 		if(!isset($row) && $row == '') {
  			$this->cart->createCartForCustomer($customerId);
  			$row = $this->getCartIdFromCustomerId($customerId);
  		}

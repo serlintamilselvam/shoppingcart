@@ -43,7 +43,14 @@ export class UserloginComponent implements OnInit {
     var expireDate = new Date()
     expireDate.setDate(expireDate.getDate() + 2) //2 days for user session
     this.cookieservice.delete('user-details')
-    this.cookieservice.set('user-details', userData, expireDate)
+    this.cookieservice.set(
+      'user-details', 
+      userData, 
+      2, 
+      location.hostname,
+      location.hostname,
+      false,
+      'Strict')
   }
 
   constructor(
